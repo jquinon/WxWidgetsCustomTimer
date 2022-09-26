@@ -1,0 +1,20 @@
+Goal:
+    Make a simple stopwatch/timer
+        Add Toggle Button
+        Add clear button
+        Add time display
+        Have time tick forward by seconds when toggled on
+            use WxTimer
+        
+    Write tests in catch2
+    Experiment with vscode configuration
+        Renaming and moving files
+
+    Come up with good C++ project structure
+        Main file should only setup UI and other key components
+
+        headers
+        src
+        test
+
+    Write KISS maintainable code

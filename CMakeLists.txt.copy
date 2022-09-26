@@ -1,0 +1,31 @@
+# Non Fetch Content CMakeLists
+
+cmake_minimum_required(VERSION 3.0.0)
+project(Timer VERSION 0.1.0)
+
+# Consider swapping to submodule build scheme eventually if portability and stuff are valuable.
+# Current dependencies: WxWidgets, Catch2
+
+include(CTest)
+enable_testing()
+
+# Catch2 Tests
+find_package(Catch2 REQUIRED)
+
+# WxWidgets
+find_package(wxWidgets REQUIRED COMPONENTS net core base)
+include(${wxWidgets_USE_FILE})
+
+# These tests can use the Catch2-provided main
+add_executable(tests test/test.cpp)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain ${wxWidgets_LIBRARIES})
+
+
+file(GLOB_RECURSE TIMER_SRC CONFIGURE_DEPENDS src/*.cpp)
+
+add_executable(Timer ${TIMER_SRC})
+target_link_libraries(Timer ${wxWidgets_LIBRARIES})
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
